@@ -1,0 +1,185 @@
+{
+    "metadata": {
+      "schemaVersion": "1.0",
+      "importType": "LEX",
+      "importFormat": "JSON"
+    },
+    "resource": {
+      "name": "AmISick",
+      "version": "1",
+      "intents": [
+        {
+          "name": "AmISick",
+          "version": "2",
+          "fulfillmentActivity": {
+            "type": "ReturnIntent"
+          },
+          "sampleUtterances": [
+            "I am not feeling well",
+            "I am feeling nauseous",
+            "I feel dizzy"
+          ],
+          "slots": [
+            {
+              "sampleUtterances": [],
+              "slotType": "AMAZON.NUMBER",
+              "slotConstraint": "Optional",
+              "valueElicitationPrompt": {
+                "messages": [
+                  {
+                    "contentType": "PlainText",
+                    "content": "how old are you?"
+                  }
+                ],
+                "maxAttempts": 2
+              },
+              "priority": 2,
+              "name": "age"
+            },
+            {
+              "sampleUtterances": [],
+              "slotType": "AMAZON.NUMBER",
+              "slotConstraint": "Required",
+              "valueElicitationPrompt": {
+                "messages": [
+                  {
+                    "contentType": "PlainText",
+                    "content": "How long have you had these symptoms?"
+                  }
+                ],
+                "maxAttempts": 2
+              },
+              "priority": 4,
+              "name": "days"
+            },
+            {
+              "sampleUtterances": [],
+              "slotType": "ItemTypes",
+              "slotTypeVersion": "2",
+              "slotConstraint": "Required",
+              "valueElicitationPrompt": {
+                "messages": [
+                  {
+                    "contentType": "PlainText",
+                    "content": "what is your occupation?"
+                  }
+                ],
+                "maxAttempts": 2
+              },
+              "priority": 3,
+              "name": "occupation"
+            },
+            {
+              "sampleUtterances": [],
+              "slotType": "AMAZON.NUMBER",
+              "slotConstraint": "Required",
+              "valueElicitationPrompt": {
+                "messages": [
+                  {
+                    "contentType": "PlainText",
+                    "content": "what is your body temperature?"
+                  }
+                ],
+                "maxAttempts": 2
+              },
+              "priority": 1,
+              "name": "temperature"
+            }
+          ],
+          "followUpPrompt": {
+            "prompt": {
+              "messages": [
+                {
+                  "groupNumber": 1,
+                  "contentType": "PlainText",
+                  "content": "thanks. Your {occupation} occupation is causing this sickness. you need to change your profession"
+                },
+                {
+                  "groupNumber": 1,
+                  "contentType": "PlainText",
+                  "content": "your (temperature} temp is too high. you need to quit smoking"
+                }
+              ],
+              "maxAttempts": 3
+            },
+            "rejectionStatement": {
+              "messages": [
+                {
+                  "groupNumber": 1,
+                  "contentType": "PlainText",
+                  "content": "OK, thanks"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "slotTypes": [
+        {
+          "description": "Available Item Types to Purchase",
+          "name": "ItemTypes",
+          "version": "2",
+          "enumerationValues": [
+            {
+              "value": "toy house",
+              "synonyms": [
+                "house"
+              ]
+            },
+            {
+              "value": "TV",
+              "synonyms": [
+                "Sony",
+                " Samsung",
+                " "
+              ]
+            },
+            {
+              "value": "Car",
+              "synonyms": [
+                "rc car",
+                "hot wheels"
+              ]
+            },
+            {
+              "value": "Cake",
+              "synonyms": [
+                "cheesecake, tiramisu, carrot cake",
+                " "
+              ]
+            },
+            {
+              "value": "Doll",
+              "synonyms": [
+                "Barbie",
+                "action man",
+                " "
+              ]
+            }
+          ],
+          "valueSelectionStrategy": "ORIGINAL_VALUE"
+        }
+      ],
+      "voiceId": "Salli",
+      "childDirected": false,
+      "locale": "en-US",
+      "idleSessionTTLInSeconds": 60,
+      "clarificationPrompt": {
+        "messages": [
+          {
+            "contentType": "PlainText",
+            "content": "Sorry, can you please repeat that?"
+          }
+        ],
+        "maxAttempts": 5
+      },
+      "abortStatement": {
+        "messages": [
+          {
+            "contentType": "PlainText",
+            "content": "Sorry, I could not understand. Goodbye."
+          }
+        ]
+      }
+    }
+  }
