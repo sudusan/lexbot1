@@ -1,0 +1,131 @@
+{
+    "metadata": {
+      "schemaVersion": "1.0",
+      "importType": "LEX",
+      "importFormat": "JSON"
+    },
+    "resource": {
+      "name": "BrokenBot",
+      "version": "2",
+      "intents": [
+        {
+          "rejectionStatement": {
+            "messages": [
+              {
+                "contentType": "PlainText",
+                "content": "I'll cancel this order. Please try again."
+              }
+            ]
+          },
+          "name": "BuyItem",
+          "version": "5",
+          "fulfillmentActivity": {
+            "type": "ReturnIntent"
+          },
+          "sampleUtterances": [
+            "I would like to purchase an item",
+            "Please buy a {item}",
+            "I'd like to buy a {item}",
+            "id like to purchase an {item}",
+            "Id like to buy an item",
+            "please purchase a {item}"
+          ],
+          "slots": [
+            {
+              "name": "item",
+              "slotConstraint": "Optional",
+              "slotType": "ItemTypes",
+              "slotTypeVersion": "2",
+              "valueElicitationPrompt": {
+                "messages": [
+                  {
+                    "contentType": "PlainText",
+                    "content": "What item would you like to buy?"
+                  }
+                ],
+                "maxAttempts": 2
+              },
+              "priority": 1,
+              "sampleUtterances": []
+            }
+          ],
+          "confirmationPrompt": {
+            "messages": [
+              {
+                "contentType": "PlainText",
+                "content": "Are you sure you'd like to buy the following: {item}?"
+              }
+            ],
+            "maxAttempts": 3
+          },
+          "conclusionStatement": {
+            "messages": [
+              {
+                "contentType": "PlainText",
+                "content": "Have a great day!"
+              },
+              {
+                "contentType": "PlainText",
+                "content": "Thanks for messaging. Goodbye!"
+              },
+              {
+                "contentType": "PlainText",
+                "content": "{item} has been purchased, thanks!"
+              }
+            ]
+          }
+        }
+      ],
+      "slotTypes": [
+        {
+          "description": "Available Item Types to Purchase",
+          "name": "ItemTypes",
+          "version": "2",
+          "enumerationValues": [
+            {
+              "value": "toy house",
+              "synonyms": [
+                "house"
+              ]
+            },
+            {
+              "value": "Car",
+              "synonyms": [
+                "rc car",
+                "hot wheels"
+              ]
+            },
+            {
+              "value": "Doll",
+              "synonyms": [
+                "Barbie",
+                "action man"
+              ]
+            }
+          ],
+          "valueSelectionStrategy": "TOP_RESOLUTION"
+        }
+      ],
+      "voiceId": "Matthew",
+      "childDirected": false,
+      "locale": "en-US",
+      "idleSessionTTLInSeconds": 300,
+      "clarificationPrompt": {
+        "messages": [
+          {
+            "contentType": "PlainText",
+            "content": "Sorry, can you please repeat that?"
+          }
+        ],
+        "maxAttempts": 5
+      },
+      "abortStatement": {
+        "messages": [
+          {
+            "contentType": "PlainText",
+            "content": "Sorry, I could not understand. Goodbye."
+          }
+        ]
+      }
+    }
+  }
